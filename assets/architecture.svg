@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 440" font-family="-apple-system,Segoe UI,Roboto,sans-serif">
+  <rect width="920" height="440" rx="14" fill="#0d1117"/>
+  <text x="460" y="40" text-anchor="middle" fill="#e6edf3" font-size="20" font-weight="700">Eywa Starter — request flow &amp; hexagonal layers</text>
+
+  <!-- layer bands -->
+  <rect x="24" y="64" width="872" height="92"  rx="10" fill="#161b22" stroke="#30363d"/>
+  <rect x="24" y="168" width="872" height="120" rx="10" fill="#161b22" stroke="#30363d"/>
+  <rect x="24" y="300" width="872" height="116" rx="10" fill="#161b22" stroke="#30363d"/>
+  <text x="40" y="84"  fill="#8b949e" font-size="12" font-weight="700">driver (inbound)</text>
+  <text x="40" y="188" fill="#8b949e" font-size="12" font-weight="700">application · domain (the Weave)</text>
+  <text x="40" y="320" fill="#8b949e" font-size="12" font-weight="700">infrastructure (driven)</text>
+
+  <!-- inbound -->
+  <rect x="60" y="96" width="200" height="44" rx="8" fill="#1f6feb"/>
+  <text x="160" y="123" text-anchor="middle" fill="#fff" font-size="14" font-weight="600">POST /api/v1/events/chat</text>
+  <rect x="300" y="96" width="150" height="44" rx="8" fill="#21262d" stroke="#30363d"/>
+  <text x="375" y="123" text-anchor="middle" fill="#e6edf3" font-size="13">Receptor → Pulse</text>
+  <text x="560" y="123" fill="#8b949e" font-size="12">auth: open · app-token · channel signature</text>
+
+  <!-- weave pipeline -->
+  <rect x="60"  y="200" width="120" height="56" rx="8" fill="#21262d" stroke="#30363d"/>
+  <text x="120" y="233" text-anchor="middle" fill="#e6edf3" font-size="13">Scouts</text>
+  <rect x="210" y="200" width="150" height="56" rx="8" fill="#238636"/>
+  <text x="285" y="225" text-anchor="middle" fill="#fff" font-size="13" font-weight="600">Spirit</text>
+  <text x="285" y="243" text-anchor="middle" fill="#d2f4d8" font-size="11">reasoning loop</text>
+  <rect x="390" y="200" width="120" height="56" rx="8" fill="#21262d" stroke="#30363d"/>
+  <text x="450" y="233" text-anchor="middle" fill="#e6edf3" font-size="13">Oracle (LLM)</text>
+  <rect x="540" y="200" width="140" height="56" rx="8" fill="#21262d" stroke="#30363d"/>
+  <text x="610" y="233" text-anchor="middle" fill="#e6edf3" font-size="13">Actions (tools)</text>
+  <rect x="710" y="200" width="170" height="56" rx="8" fill="#21262d" stroke="#30363d"/>
+  <text x="795" y="225" text-anchor="middle" fill="#e6edf3" font-size="12">domain/services</text>
+  <text x="795" y="243" text-anchor="middle" fill="#8b949e" font-size="11">(port)</text>
+
+  <!-- infra -->
+  <rect x="710" y="332" width="170" height="56" rx="8" fill="#3b2a4d" stroke="#6c3483"/>
+  <text x="795" y="358" text-anchor="middle" fill="#e6edf3" font-size="12">driven adapter</text>
+  <text x="795" y="376" text-anchor="middle" fill="#8b949e" font-size="11">catalog / API / DB</text>
+  <rect x="60"  y="340" width="180" height="44" rx="8" fill="#21262d" stroke="#30363d"/>
+  <text x="150" y="367" text-anchor="middle" fill="#e6edf3" font-size="12">MongoDB — Spirit/Echo/Chronicle</text>
+  <rect x="260" y="340" width="200" height="44" rx="8" fill="#21262d" stroke="#30363d"/>
+  <text x="360" y="367" text-anchor="middle" fill="#e6edf3" font-size="12">Redis — Memory · Bond (lock)</text>
+
+  <!-- arrows -->
+  <defs><marker id="a" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#8b949e"/></marker></defs>
+  <g stroke="#8b949e" stroke-width="2" marker-end="url(#a)" fill="none">
+    <path d="M260,118 H298"/>
+    <path d="M375,142 V196"/>
+    <path d="M180,228 H208"/>
+    <path d="M360,228 H388"/>
+    <path d="M510,228 H538"/>
+    <path d="M680,228 H708"/>
+    <path d="M795,256 V330"/>
+  </g>
+  <path d="M450,256 V270 H285 V258" stroke="#8b949e" stroke-width="2" fill="none" marker-end="url(#a)"/>
+</svg>

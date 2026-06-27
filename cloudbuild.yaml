@@ -1,0 +1,23 @@
+# Minimal Cloud Build → Cloud Run pipeline. Adjust _SERVICE / _REGION and the runtime env vars
+# (set secrets like OPENAI_API_KEY via Secret Manager, not here).
+substitutions:
+  _SERVICE: eywa-starter
+  _REGION: us-central1
+
+steps:
+  - name: gcr.io/cloud-builders/docker
+    args: ["build", "-f", "docker/Dockerfile", "-t", "${_REGION}-docker.pkg.dev/$PROJECT_ID/apps/${_SERVICE}:$SHORT_SHA", "."]
+  - name: gcr.io/cloud-builders/docker
+    args: ["push", "${_REGION}-docker.pkg.dev/$PROJECT_ID/apps/${_SERVICE}:$SHORT_SHA"]
+  - name: gcr.io/google.com/cloudsdktool/cloud-sdk
+    entrypoint: gcloud
+    args:
+      - run
+      - deploy
+      - ${_SERVICE}
+      - --image=${_REGION}-docker.pkg.dev/$PROJECT_ID/apps/${_SERVICE}:$SHORT_SHA
+      - --region=${_REGION}
+      - --platform=managed
+
+images:
+  - "${_REGION}-docker.pkg.dev/$PROJECT_ID/apps/${_SERVICE}:$SHORT_SHA"
